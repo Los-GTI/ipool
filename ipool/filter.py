@@ -2,7 +2,7 @@
 import urllib
 import time
 
-urllib.socket.setdefaulttimeout(10)
+urllib.socket.setdefaulttimeout(5)
 class IPChecker(object):
     url = 'http://ip138.com';
 

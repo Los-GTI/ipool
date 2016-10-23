@@ -5,9 +5,14 @@ from ipool.db import DB
 
 data = DB()
 verifier = IPChecker()
-name = data.get_queue()
-first = ''
-while name:
+length = data.count()
+count = 0
+first = name = ''
+while count < length:
+    name = data.get_queue()
+    #完成一轮校验
+    if first and name == first:
+        break
     detail = data.get_detail(name)
     detail = verifier.check(detail)
     if detail:
@@ -16,7 +21,4 @@ while name:
             first = name
     else:
         data.delete(name)
-    name = data.get_queue()
-    #完成一轮校验
-    if name == first:
-        break
+    count += 1
