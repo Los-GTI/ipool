@@ -1,16 +1,18 @@
 #coding=utf-8
 import redis
+import ipool.db.base as base
 
 '''
 使用redis作为ip池数据存储层
 通过方向性（头出尾进）的方法来操作列表以实现队列来存储代理ip列表
 使用hash来存储代理ip的详细信息
 '''
-class DB(object):
+class Driver(base.Driver):
 
-    def __init__(self):
+    def __init__(self, config):
+        super(Driver, self).__init__(config)
         try:
-            self.conn = redis.Redis(password = 'localtest')
+            self.conn = redis.Redis(**config)
         except:
             raise Exception('failed to connect redis')
         self.queue = 'ip_queue'

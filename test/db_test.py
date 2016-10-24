@@ -16,8 +16,6 @@ class TestDB(unittest.TestCase):
         self.redis.clear()
 
     def test_count(self):
-        with open('log', 'w+') as f:
-            f.write('%s' % sys.path)
         assert self.redis.count() == 1
 
     def test_add(self):

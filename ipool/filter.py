@@ -8,10 +8,10 @@ class IPChecker(object):
 
     def check(self, item):
         start_time = time.time()
-        proxies = {
-            item['protocol'] : 'http://%s:%s' % (item['ip'], item['port']),
-        }
         try:
+            proxies = {
+                item['protocol'] : 'http://%s:%s' % (item['ip'], item['port']),
+            }
             request = urllib.urlopen(self.url, proxies = proxies)
             content = request.read()
         except:
